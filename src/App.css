@@ -4,3 +4,11 @@ h1 {
 ul li {
   list-style-type: georgian;
 }
+
+.main-menu {
+  text-align: center;
+}
+
+.main-menu a {
+  margin-right: 10px;
+}
