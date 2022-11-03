@@ -1,0 +1,7 @@
+.content {
+    grid-area: content;
+    background-color: #3f869b;
+}
+.item {
+    color: khaki;
+}

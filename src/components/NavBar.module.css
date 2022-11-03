@@ -1,0 +1,8 @@
+.nav {
+    grid-area: nav;
+    background-color: #3f5c9b;
+}
+.item {
+    list-style-type: none;
+    color: aliceblue;
+}

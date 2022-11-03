@@ -1,16 +1,18 @@
 import React from 'react';
+import s from "./NavBar.module.css"
 
 export const NavBar = () => {
     return (
-        <nav className={'nav'}>
+        <nav className={s.nav}>
             <ul>
-                <li>Profile</li>
-                <li>Message</li>
-                <li>News</li>
-                <li>Musics</li>
-                <li>settings</li>
+                <li className={s.item}>Profile</li>
+                <li className={s.item}>Message</li>
+                <li className={s.item}>News</li>
+                <li className={s.item}>Musics</li>
+                <li className={s.item}>Settings</li>
             </ul>
         </nav>
     );
+
 };
 
