@@ -10,7 +10,7 @@
     list-style-type: none;
     color: #ffffff;
 }
-a {
+.item a {
     color: #ffffff;
     text-decoration: none;
 }
