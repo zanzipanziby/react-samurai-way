@@ -1,50 +1,34 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import {DialogItem} from "./DialogItem/DialogItem";
+import {Message} from "./Message/Message";
+import {DialogsPageType, DialogsType, MessagesType} from "../../Redux/state"
 
-
-type MessagePropsType = {
-    text: string
+export type DialogsPropsType = {
+    state: DialogsPageType
 }
 
-export const Message = (props: MessagePropsType) => {
-    return (
-        <div className={s.message}>{props.text}</div>
-    )
-}
+export const Dialogs = (props: DialogsPropsType) => {
 
 
-type DialogItemPropsType = {
-    name: string
-    id: string
-}
+    let dialogItemRender = props.state.dialogs.map(el => {
+        return (
+            <DialogItem name={el.name} id={el.id}/>
+        )
+    }) //Мапаем компоненты из масивов данных
+    let messageRender = props.state.messages.map(el => {
+        return (
+            <Message text={el.message}/>
+        )
+    })
 
-export const DialogItem = (props: DialogItemPropsType) => {
-    let path = "/dialogs/" + props.id
-    return (
-        <div className={s.dialog + " " + s.active}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
-}
-
-export const Dialogs = () => {
     return (
         <div className={s.dialogs}>
-            <div className={s.dialog_items}>
-                <DialogItem name={"Dima"} id={"1"}/>
-                <DialogItem name={"Misha"} id={"2"}/>
-                <DialogItem name={"Veronika"} id={"3"}/>
-                <DialogItem name={"Svetlana"} id={"4"}/>
-                <DialogItem name={"Jura"} id={"5"}/>
-                <DialogItem name={"Natasha"} id={"6"}/>
-
-            </div>
+            <ul className={s.dialog_items}>
+                {dialogItemRender}
+            </ul>
             <div className={s.messages}>
-                <Message text={"Hi"}/>
-                <Message text={"How are you"}/>
-                <Message text={"Go to school"}/>
-                <Message text={"Plz, buy meat"}/>
+                {messageRender}
             </div>
         </div>
     );

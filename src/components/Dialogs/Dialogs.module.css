@@ -1,20 +1,13 @@
-.dialogs{
+.dialogs {
     display: grid;
     grid-template-columns: 3fr 10fr;
     padding: 10px;
 }
-.dialog_items{
 
-}
-.dialog_items .active {
+.dialog_items {
     color: #e8e6c0;
 }
-.dialog{
 
-}
-.messages{
-
-}
-.message{
+.messages {
 
 }

@@ -1,7 +1,9 @@
 .myPosts {
     padding: 10px;
 }
-
+.myPosts h3 {
+    color: #ffffff;
+}
 .posts {
     padding: 10px 0;
 }
