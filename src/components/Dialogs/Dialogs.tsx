@@ -5,22 +5,25 @@ import {Message} from "./Message/Message";
 import {DialogsPageType, DialogsType, MessagesType} from "../../Redux/state"
 
 export type DialogsPropsType = {
-    state: DialogsPageType
+    dialogsPage: DialogsPageType
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
 
 
-    let dialogItemRender = props.state.dialogs.map(el => {
+    const dialogItemRender = props.dialogsPage.dialogs.map(el => {
         return (
             <DialogItem name={el.name} id={el.id}/>
         )
     }) //Мапаем компоненты из масивов данных
-    let messageRender = props.state.messages.map(el => {
+    const messageRender = props.dialogsPage.messages.map(el => {
         return (
             <Message text={el.message}/>
         )
     })
+
+    const newMessageElement = React.createRef<HTMLTextAreaElement>()
+    const addMessage = () => alert(newMessageElement.current?.value)
 
     return (
         <div className={s.dialogs}>
@@ -30,6 +33,8 @@ export const Dialogs = (props: DialogsPropsType) => {
             <div className={s.messages}>
                 {messageRender}
             </div>
+            <textarea ref={newMessageElement}/>
+            <button onClick={addMessage}></button>
         </div>
     );
 };

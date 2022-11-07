@@ -12,23 +12,27 @@ import {StateType} from "./Redux/state";
 
 export type AppPropsType = {
     state: StateType
+    addPost: () => void
+    updateNewPostChange: (newText: string) => void
 }
 function App(props:AppPropsType) {
     return (
-        <BrowserRouter>
+
             <div className="app-wrapper">
                 <Header/>
                 <NavBar/>
                 <div className={"app-wrapper_content"}>
-                    <Route path="/profile" render={() => <Profile state= {props.state.profilePage}/>}/>
-                    <Route path="/dialogs" render={() => <Dialogs state= {props.state.dialogsPage}/>}/>
-
+                    <Route path="/profile" render={() => <Profile profilePage= {props.state.profilePage}
+                                                                  addPost={props.addPost}
+                                                                  updateNewPostChange = {props.updateNewPostChange}
+                    />}/>
+                    <Route path="/dialogs" render={() => <Dialogs dialogsPage= {props.state.dialogsPage}/>}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>
                 </div>
             </div>
-        </BrowserRouter>
+
     );
 }
 
