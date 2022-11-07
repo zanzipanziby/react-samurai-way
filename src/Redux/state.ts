@@ -20,6 +20,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
+    messageText: string
 }
 
 export type StateType = {
@@ -68,11 +69,12 @@ export let state: StateType = {
         ],
         messages: [
             {id: "1", message: "Hi"},
-            {id: "1", message: "How are you"},
-            {id: "1", message: "Go to school"},
-            {id: "1", message: "Plz, buy meat"},
-            {id: "1", message: "let's rock"},
+            {id: "2", message: "How are you"},
+            {id: "3", message: "Go to school"},
+            {id: "4", message: "Plz, buy meat"},
+            {id: "5", message: "let's rock"},
         ],
+        messageText:''
     }
 }  //General State
 
@@ -89,5 +91,17 @@ export const addPost = () => {
 
 export const updateNewPostChange = (newText: string) => {
     state.profilePage.newPostText = newText
+    rerenderEntireTree(state)
+}
+
+export const updateMessageText = (newMessage: string) => {
+    state.dialogsPage.messageText = newMessage
+    rerenderEntireTree(state)
+}
+
+export const addMessage = () => {
+    const newMessage:MessagesType = {id: "6", message: state.dialogsPage.messageText }
+    state.dialogsPage.messages.push(newMessage)
+    state.dialogsPage.messageText = ""
     rerenderEntireTree(state)
 }

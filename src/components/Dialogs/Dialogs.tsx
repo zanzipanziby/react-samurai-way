@@ -2,10 +2,12 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsPageType, DialogsType, MessagesType} from "../../Redux/state"
+import {DialogsPageType} from "../../Redux/state"
 
 export type DialogsPropsType = {
     dialogsPage: DialogsPageType
+    updateMessageText: (newMessage: string) => void
+    addMessage: () => void
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -23,7 +25,12 @@ export const Dialogs = (props: DialogsPropsType) => {
     })
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>()
-    const addMessage = () => alert(newMessageElement.current?.value)
+    const updateMessageTextHandler = () => {
+        if (newMessageElement.current) {
+            props.updateMessageText(newMessageElement.current?.value)
+        }
+    }
+
 
     return (
         <div className={s.dialogs}>
@@ -33,8 +40,9 @@ export const Dialogs = (props: DialogsPropsType) => {
             <div className={s.messages}>
                 {messageRender}
             </div>
-            <textarea ref={newMessageElement}/>
-            <button onClick={addMessage}></button>
+            <textarea ref={newMessageElement} onChange={updateMessageTextHandler}
+                      value={props.dialogsPage.messageText}/>
+            <button onClick={props.addMessage}>Send Message</button>
         </div>
     );
 };

@@ -16,9 +16,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
     const postRender = props.posts.map(p => <Post message={p.message} likeCount={p.likeCount}/>)
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const addPost = () => {
-        props.addPost()
-    }
+
 
     let onPostChange = () => {
         if(newPostElement.current) {
@@ -33,7 +31,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
                     <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={props.addPost}>Add Post</button>
                 </div>
             </div>
             <div className={s.posts}>
